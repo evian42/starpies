@@ -10,7 +10,7 @@
 const REPL = require('repl');
 
 // Local Strapi dependencies.
-const strapi = require('../lib/');
+const strapi = require('../../lib/');
 
 // Logger.
 const logger = require('strapi-utils').logger;

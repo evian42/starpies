@@ -28,7 +28,7 @@ module.exports = function () {
   // Build initial scope.
   const scope = {
     rootPath: process.cwd(),
-    strapiRoot: path.resolve(__dirname, '..'),
+    strapiRoot: path.resolve(__dirname, '..', '..'),
     args: cliArguments,
     environment: process.NODE_ENV || 'development'
   };

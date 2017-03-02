@@ -10,7 +10,7 @@
 const _ = require('lodash');
 
 // Local Strapi dependencies.
-const packageJSON = require('../package.json');
+const packageJSON = require('../../package.json');
 
 // Strapi utilities.
 const program = require('strapi-utils').commander;
@@ -136,6 +136,18 @@ cmd = program.command('update');
 cmd.unknownOption = NOOP;
 cmd.description('pull the latest updates of your custom generators');
 cmd.action(require('./strapi-update'));
+
+// `$ strapi login`
+cmd = program.command('login');
+cmd.unknownOption = NOOP;
+cmd.description('signin to your strapi account');
+cmd.action(require('./strapi-login'));
+
+// `$ strapi register`
+cmd = program.command('register');
+cmd.unknownOption = NOOP;
+cmd.description('signup to strapi services');
+cmd.action(require('./strapi-register'));
 
 /**
  * Normalize help argument

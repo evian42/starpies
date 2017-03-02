@@ -15,7 +15,7 @@ const _ = require('lodash');
 const forever = require('forever-monitor');
 
 // Local Strapi dependencies.
-const isLocalStrapiValid = require('../lib/private/isLocalStrapiValid');
+const isLocalStrapiValid = require('../../lib/private/isLocalStrapiValid');
 
 // Logger.
 const logger = require('strapi-utils').logger;

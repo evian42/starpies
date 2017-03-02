@@ -41,7 +41,7 @@ module.exports = function () {
       const config = JSON.parse(fs.readFileSync(path.resolve(HOME, '.strapirc')));
       _.forEach(config.generators, (info, name) => {
         try {
-          process.chdir(path.resolve(__dirname, '..', 'node_modules', 'strapi-generate-' + name));
+          process.chdir(path.resolve(__dirname, '..', '..', 'node_modules', 'strapi-generate-' + name));
           logger.debug('Pulling the latest updates of `strapi-generate-' + name + '`.');
           exec('git pull ' + info.remote + ' ' + info.branch, err => {
             if (err) {
@@ -51,7 +51,7 @@ module.exports = function () {
             }
           });
         } catch (err) {
-          process.chdir(path.resolve(__dirname, '..', 'node_modules'));
+          process.chdir(path.resolve(__dirname, '..', '..', 'node_modules'));
           logger.debug('Cloning the `strapi-generate-' + name + '` repository for the first time...');
           exec('git clone ' + info.repository + ' strapi-generate-' + name, err => {
             if (err) {
@@ -59,7 +59,7 @@ module.exports = function () {
               console.log(err);
             } else {
               logger.info('Successfully cloned the `strapi-generate-' + name + '` repository.');
-              process.chdir(path.resolve(__dirname, '..', 'node_modules', 'strapi-generate-' + name));
+              process.chdir(path.resolve(__dirname, '..', '..', 'node_modules', 'strapi-generate-' + name));
               logger.debug('Installing dependencies for `strapi-generate-' + name + '`...');
               exec('npm install', err => {
                 if (err) {

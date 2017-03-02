@@ -13,7 +13,7 @@ const path = require('path');
 const generate = require('strapi-generate');
 
 // Local Strapi dependencies.
-const packageJSON = require('../package.json');
+const packageJSON = require('../../package.json');
 
 // Logger.
 const logger = require('strapi-utils').logger;
@@ -35,7 +35,7 @@ module.exports = function () {
   // Build initial scope.
   const scope = {
     rootPath: process.cwd(),
-    strapiRoot: path.resolve(__dirname, '..'),
+    strapiRoot: path.resolve(__dirname, '..', '..'),
     generatorType: 'new',
     name: cliArguments[0],
     strapiPackageJSON: packageJSON
