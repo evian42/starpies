@@ -6,7 +6,7 @@
  * Module dependencies
  */
 
-// Login process.
+// Processes.
 const registerProcess = require('../process/register');
 
 /**

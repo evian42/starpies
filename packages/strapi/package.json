@@ -43,6 +43,7 @@
     "credit-card": "^3.0.1",
     "delegates": "^1.0.0",
     "email-validator": "^1.0.7",
+    "inquirer": "^3.0.5",
     "kcors": "^2.2.0",
     "koa": "^2.0.0-alpha.7",
     "koa-better-static": "^1.0.5",

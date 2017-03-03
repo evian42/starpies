@@ -149,6 +149,12 @@ cmd.unknownOption = NOOP;
 cmd.description('signup to strapi services');
 cmd.action(require('./strapi-register'));
 
+// `$ strapi deploy`
+cmd = program.command('deploy');
+cmd.unknownOption = NOOP;
+cmd.description('deploy your application on Strapi Cloud');
+cmd.action(require('./strapi-deploy'));
+
 /**
  * Normalize help argument
  */

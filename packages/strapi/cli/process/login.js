@@ -44,7 +44,10 @@ module.exports = async () => {
 
       success(`You are successfully logged in as ${res.profile.fullname}`);
 
-      return res;
+      return {
+        email: res.profile.email,
+        token: res.token
+      };
     }
   }
 
