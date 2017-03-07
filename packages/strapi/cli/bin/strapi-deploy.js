@@ -16,6 +16,7 @@ const haveFreePlanProcess = require('../process/haveFreePlan');
 const isDeployProcess = require('../process/isDeploy');
 const chosePlanProcess = require('../process/chosePlan');
 const linkProcess = require('../process/link');
+const createApplicationProcess = require('../process/createApplication');
 
 // App name form.
 const appNameForm = require('../forms/appName');
@@ -98,7 +99,7 @@ module.exports = async () => {
       const appName = await appNameForm();
       const plan = await chosePlanProcess(auth.token, haveFreePlan);
 
-      console.log(`Create ${appName} with ${plan} plan`);
+      await createApplicationProcess(auth.token, appName, plan);
     } else if (choice === 'link') {
       await linkProcess();
     } else {
