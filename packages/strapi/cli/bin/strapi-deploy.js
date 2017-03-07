@@ -12,8 +12,15 @@ const registerProcess = require('../process/register');
 const isLoginProcess = require('../process/isLogin');
 const haveDeployAccountProcess = require('../process/haveDeployAccount');
 const createDeployAccountProcess = require('../process/createDeployAccount');
+const haveFreePlanProcess = require('../process/haveFreePlan');
+const isDeployProcess = require('../process/isDeploy');
+const chosePlanProcess = require('../process/chosePlan');
+const linkProcess = require('../process/link');
 
-// Utils
+// App name form.
+const appNameForm = require('../forms/appName');
+
+// Utils.
 const listInput = require('../utils/input/list');
 
 /**
@@ -28,7 +35,7 @@ module.exports = async () => {
 
   if (typeof isLogin === 'object') {
     auth = isLogin;
-  } else if (isLogin === 'expire'){
+  } else if (isLogin === 'expire') {
     auth = await loginProcess();
   } else {
     const choice = await listInput({
@@ -60,6 +67,43 @@ module.exports = async () => {
 
   if (!haveDeployAccount) {
     await createDeployAccountProcess(auth.token);
+  }
+
+  const haveFreePlan = await haveFreePlanProcess(auth.token);
+
+  if (!haveFreePlan) {
+    console.log('Have to setup credit card and billing address');
+  }
+
+  const isDeploy = await isDeployProcess(auth.token);
+
+  if (typeof isDeploy !== 'object') {
+    const choice = await listInput({
+      message: 'You already have an application for this project?',
+      choices: [{
+        name: 'Create new application',
+        value: 'create',
+        short: 'Create'
+      },
+      {
+        name: 'Link to an existing application',
+        value: 'link',
+        short: 'Link'
+      }],
+      separator: false,
+      abort: 'end'
+    });
+
+    if (choice === 'create') {
+      const appName = await appNameForm();
+      const plan = await chosePlanProcess(auth.token, haveFreePlan);
+
+      console.log(`Create ${appName} with ${plan} plan`);
+    } else if (choice === 'link') {
+      await linkProcess();
+    } else {
+      process.exit(1);
+    }
   }
 
   process.exit(1);

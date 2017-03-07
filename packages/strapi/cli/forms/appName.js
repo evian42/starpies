@@ -6,7 +6,7 @@
 
 // Public dependencies.
 const chalk = require('chalk');
-const {validate} = require('email-validator');
+const _ = require('lodash');
 
 // Utils.
 const textInput = require('../utils/input/text');
@@ -16,27 +16,17 @@ function rightPad(string, n = 12) {
   return string + ' '.repeat(n > -1 ? n : 0);
 }
 
-module.exports = async (email) => {
+module.exports = async () => {
   const state = {
     error: undefined,
-    credentialsGroupLabel: `\n> ${chalk.bold('Enter credentials')}`,
+    appNameGroupLabel: `\n> ${chalk.bold('Enter Application name')}`,
 
-    email: {
-      label: rightPad('Email'),
-      placeholder: 'john.doe@acme.com',
-      validateValue: data => validate(data)
-    },
-
-    password: {
-      label: rightPad('Password'),
-      placeholder: '',
+    name: {
+      label: rightPad('App name'),
+      placeholder: 'strapiApp',
       validateValue: data => data.trim().length > 0
     }
   };
-
-  if (email) {
-    state.email.initialValue = email;
-  }
 
   async function render() {
     for (const key in state) {
@@ -61,13 +51,11 @@ module.exports = async (email) => {
             autoComplete: piece.autoComplete
           });
 
+          result = _.kebabCase(result);
+
           piece.value = result;
 
-          if (key === 'password') {
-            process.stdout.write(`${chalk.cyan('✓')} ${piece.label}${'*'.repeat(result.length)}\n`);
-          } else {
-            process.stdout.write(`${chalk.cyan('✓')} ${piece.label}${result}\n`);
-          }
+          process.stdout.write(`${chalk.cyan('✓')} ${piece.label}${result}\n`);
         } catch (err) {
           if (err.message === 'USER_ABORT') {
             process.exit(1);
@@ -78,11 +66,9 @@ module.exports = async (email) => {
       }
     }
 
-    return {
-      email: state.email.value,
-      password: state.password.value
-    };
+    return state.name.value;
   }
+
 
   return render().catch(console.error);
 };

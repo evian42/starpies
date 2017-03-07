@@ -4,7 +4,7 @@
  * Module dependencies
  */
 
-// Public dependencies
+// Public dependencies.
 const fetch = require('node-fetch');
 
 module.exports = async (url, token) => {

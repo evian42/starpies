@@ -8,7 +8,7 @@
 const fetch = require('node-fetch');
 
 module.exports = async (url, token) => {
-  const res = await fetch(`${url}/subscriptions`, {
+  const res = await fetch(`${url}/plans`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

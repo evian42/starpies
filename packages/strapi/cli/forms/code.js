@@ -4,10 +4,10 @@
  * Module dependencies
  */
 
-// Public dependencies
+// Public dependencies.
 const chalk = require('chalk');
 
-// Utils
+// Utils.
 const textInput = require('../utils/input/text');
 
 function rightPad(string, n = 12) {

@@ -4,7 +4,7 @@
  * Module dependencies
  */
 
-// Node.js core
+// Node.js core.
 const fs = require('fs');
 const path = require('path');
 
@@ -20,11 +20,7 @@ module.exports = async () => {
 
     const res = await userInfosAction(url, strapirc.token);
 
-    if (!res.error) {
-      return strapirc;
-    } else {
-      return 'expire';
-    }
+    return (!res.error) ? strapirc : 'expire';
   } catch(e) {
     return 'not_login';
   }

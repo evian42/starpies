@@ -66,6 +66,7 @@
     "koa-sslify": "turboMaCk/koa-sslify#koa2",
     "koa-views": "^5.0.2",
     "lodash": "^4.17.4",
+    "moment": "^2.17.1",
     "node-fetch": "^1.6.3",
     "node-schedule": "^1.2.0",
     "ora": "^1.1.0",

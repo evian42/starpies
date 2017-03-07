@@ -4,11 +4,11 @@
  * Module dependencies
  */
 
-// Public dependencies
+// Public dependencies.
 const chalk = require('chalk');
 const ccValidator = require('credit-card');
 
-// Utils
+// Utils.
 const textInput = require('../utils/input/text');
 const countries = require('../utils/billing/country-list');
 const cardBrands = require('../utils/billing/card-brands');

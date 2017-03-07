@@ -4,10 +4,10 @@
  * Module dependencies
  */
 
-// Public dependencies
+// Public dependencies.
 const chalk = require('chalk');
 
-// Utils
+// Utils.
 const textInput = require('../utils/input/text');
 const countries = require('../utils/billing/country-list');
 const geocode = require('../utils/billing/geocode');

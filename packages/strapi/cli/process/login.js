@@ -4,7 +4,7 @@
  * Module dependencies
  */
 
-// Node.js core
+// Node.js core.
 const fs = require('fs');
 const path = require('path');
 

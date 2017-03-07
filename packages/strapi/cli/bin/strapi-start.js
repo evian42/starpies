@@ -10,7 +10,7 @@
 const cp = require('child_process');
 const path = require('path');
 
-// Public dependencies
+// Public dependencies.
 const _ = require('lodash');
 const forever = require('forever-monitor');
 

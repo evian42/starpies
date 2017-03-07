@@ -88,6 +88,8 @@ module.exports = async function ({
 
   const nonce = Date.now();
 
+  console.log(' ');
+
   const answer = await inquirer.prompt({
     name: nonce,
     type: 'list',
