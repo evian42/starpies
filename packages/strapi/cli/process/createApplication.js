@@ -4,6 +4,10 @@
  * Module dependencies
  */
 
+// Node.js core.
+const fs = require('fs');
+const path = require('path');
+
 // Strapi services actions.
 const createApplicationAction = require('../actions/createApplication');
 
@@ -28,7 +32,12 @@ module.exports = async (token, appName, plan) => {
   if (res.error) {
     error(res.error);
     process.exit(1);
-  } else {
-    success('Application have been created!');
   }
+
+  delete res.application.createdAt;
+  delete res.application.updatedAt;
+
+  fs.writeFileSync(path.resolve(process.cwd(), '.strapirc'), JSON.stringify(res.application), 'utf8');
+
+  success('Application have been created!');
 };

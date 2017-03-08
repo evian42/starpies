@@ -40,7 +40,7 @@ module.exports = async (token, haveFreePlan, haveBilling) => {
     abort: 'end'
   });
 
-  if (choice === 'abort') {
+  if (!choice) {
     process.exit(1);
   }
 

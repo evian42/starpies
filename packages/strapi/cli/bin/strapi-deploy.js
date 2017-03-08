@@ -17,12 +17,16 @@ const isDeployProcess = require('../process/isDeploy');
 const chosePlanProcess = require('../process/chosePlan');
 const linkProcess = require('../process/link');
 const createApplicationProcess = require('../process/createApplication');
+const deployProcess = require('../process/deploy');
 
 // App name form.
 const appNameForm = require('../forms/appName');
 
 // Utils.
 const listInput = require('../utils/input/list');
+
+// Logger.
+const info = require('../utils/output/info');
 
 /**
  * `$ strapi deploy`
@@ -64,21 +68,19 @@ module.exports = async () => {
     }
   }
 
+  const isDeploy = await isDeployProcess(auth.token);
   const haveDeployAccount = await haveDeployAccountProcess(auth.token);
+  const haveFreePlan = await haveFreePlanProcess(auth.token);
 
   if (!haveDeployAccount) {
     await createDeployAccountProcess(auth.token);
   }
 
-  const haveFreePlan = await haveFreePlanProcess(auth.token);
-
-  if (!haveFreePlan) {
-    console.log('Have to setup credit card and billing address');
-  }
-
-  const isDeploy = await isDeployProcess(auth.token);
-
   if (typeof isDeploy !== 'object') {
+    if (!haveFreePlan) {
+      console.log('Have to setup credit card and billing address');
+    }
+
     const choice = await listInput({
       message: 'You already have an application for this project?',
       choices: [{
@@ -95,17 +97,28 @@ module.exports = async () => {
       abort: 'end'
     });
 
-    if (choice === 'create') {
+    if (!choice) {
+      process.exit(1);
+    }
+
+    let link;
+    if (choice === 'link') {
+      link = await linkProcess(auth.token);
+
+      if (link === 'abort') {
+        info('You don\'t have projects, we automaticaly switch to create new project');
+      }
+    }
+
+    if (choice === 'create' || link === 'abort') {
       const appName = await appNameForm();
       const plan = await chosePlanProcess(auth.token, haveFreePlan);
 
       await createApplicationProcess(auth.token, appName, plan);
-    } else if (choice === 'link') {
-      await linkProcess();
-    } else {
-      process.exit(1);
     }
   }
+
+  await deployProcess();
 
   process.exit(1);
 };

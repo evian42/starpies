@@ -70,6 +70,7 @@
     "node-fetch": "^1.6.3",
     "node-schedule": "^1.2.0",
     "ora": "^1.1.0",
+    "simple-git": "^1.67.0",
     "socket.io": "^1.5.1",
     "strapi-generate": "^3.0.0-alpha.3",
     "strapi-generate-admin": "^3.0.0-alpha.3",
