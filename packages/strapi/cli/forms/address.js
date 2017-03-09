@@ -18,7 +18,7 @@ function rightPad(string, n = 12) {
   return string + ' '.repeat(n > -1 ? n : 0);
 }
 
-module.exports = async () => {
+module.exports = async (country) => {
   const state = {
     error: undefined,
     addressGroupLabel: `\n> ${chalk.bold('Enter your billing address')}`,
@@ -74,6 +74,10 @@ module.exports = async () => {
       validateValue: data => data.trim().length > 0
     }
   };
+
+  if (country) {
+    state.country.initialValue = country;
+  }
 
   async function render() {
     for (const key in state) {

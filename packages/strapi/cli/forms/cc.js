@@ -25,7 +25,7 @@ function expDateMiddleware(data) {
 module.exports = async () => {
   const state = {
     error: undefined,
-    cardGroupLabel: `> ${chalk.bold('Enter your card details')}`,
+    creditCardGroupLabel: `\n> ${chalk.bold('Enter your card details')}`,
 
     cardNumber: {
       label: rightPad('Number'),

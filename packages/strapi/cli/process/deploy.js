@@ -12,11 +12,14 @@ const path = require('path');
 const _ = require('lodash');
 const git = require('simple-git')();
 
+// Utils.
+const cmd = require('../utils/cmd');
+
 // Logger.
 const wait = require('../utils/output/wait');
 
 module.exports = async () => {
-  return new Promise((resolve) => {
+  return new Promise(async (resolve) => {
     let strapirc;
 
     try {
@@ -29,6 +32,9 @@ module.exports = async () => {
 
     console.log(' ');
     const spinner = wait(`Deploy ${strapirc.name} application...`);
+
+    await cmd(`ssh-keygen -R ${strapirc.name}.strapiapp.com `);
+    await cmd(`ssh-keyscan ${strapirc.name}.strapiapp.com >> ~/.ssh/known_hosts`);
 
     git.init()
     .then(() => {

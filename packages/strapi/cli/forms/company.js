@@ -6,6 +6,7 @@
 
 // Public dependencies.
 const chalk = require('chalk');
+const _ = require('lodash');
 
 // Utils.
 const textInput = require('../utils/input/text');
@@ -15,19 +16,26 @@ function rightPad(string, n = 12) {
   return string + ' '.repeat(n > -1 ? n : 0);
 }
 
-module.exports = async () => {
+module.exports = async (country) => {
   const state = {
     error: undefined,
-    code: {
-      label: rightPad('Code'),
-      mask: 'code',
-      placeholder: '######',
-      validateKeypress: (data, value) => (
-        /\d/.test(data) && value.length < 7
-      ),
-      validateValue: data => data.trim().length === 6
+    name: {
+      label: rightPad('Company'),
+      placeholder: 'Strapi Solution',
+      validateValue: data => data.trim().length > 0
+    },
+    vat: {
+      label: rightPad('VAT number'),
+      placeholder: '',
+      validateValue: data => data.trim().length > 0
     }
   };
+
+  if (_.indexOf(['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
+    'DE', 'GB', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL',
+    'PT', 'RO', 'SK', 'SI', 'ES', 'SE'], country) === -1) {
+    delete state.vat;
+  }
 
   async function render() {
     for (const key in state) {
@@ -65,7 +73,10 @@ module.exports = async () => {
       }
     }
 
-    return state.code.value;
+    return {
+      name: state.name.value,
+      vat: (state.vat) ? state.vat.value : undefined,
+    };
   }
 
 

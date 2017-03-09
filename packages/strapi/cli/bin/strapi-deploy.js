@@ -10,10 +10,9 @@
 const loginProcess = require('../process/login');
 const registerProcess = require('../process/register');
 const isLoginProcess = require('../process/isLogin');
+const isDeployProcess = require('../process/isDeploy');
 const haveDeployAccountProcess = require('../process/haveDeployAccount');
 const createDeployAccountProcess = require('../process/createDeployAccount');
-const haveFreePlanProcess = require('../process/haveFreePlan');
-const isDeployProcess = require('../process/isDeploy');
 const chosePlanProcess = require('../process/chosePlan');
 const linkProcess = require('../process/link');
 const createApplicationProcess = require('../process/createApplication');
@@ -68,19 +67,15 @@ module.exports = async () => {
     }
   }
 
-  const isDeploy = await isDeployProcess(auth.token);
   const haveDeployAccount = await haveDeployAccountProcess(auth.token);
-  const haveFreePlan = await haveFreePlanProcess(auth.token);
 
   if (!haveDeployAccount) {
     await createDeployAccountProcess(auth.token);
   }
 
-  if (typeof isDeploy !== 'object') {
-    if (!haveFreePlan) {
-      console.log('Have to setup credit card and billing address');
-    }
+  const isDeploy = await isDeployProcess(auth.token);
 
+  if (typeof isDeploy !== 'object') {
     const choice = await listInput({
       message: 'You already have an application for this project?',
       choices: [{
@@ -112,7 +107,7 @@ module.exports = async () => {
 
     if (choice === 'create' || link === 'abort') {
       const appName = await appNameForm();
-      const plan = await chosePlanProcess(auth.token, haveFreePlan);
+      const plan = await chosePlanProcess(auth.token);
 
       await createApplicationProcess(auth.token, appName, plan);
     }
