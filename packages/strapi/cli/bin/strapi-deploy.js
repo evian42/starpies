@@ -6,6 +6,13 @@
  * Module dependencies
  */
 
+
+// Public dependencies.
+const _ = require('lodash');
+
+// Strapi services actions.
+const getApplicationsAction = require('../actions/getApplications');
+
 // Processes.
 const loginProcess = require('../process/login');
 const registerProcess = require('../process/register');
@@ -76,21 +83,30 @@ module.exports = async () => {
   const isDeploy = await isDeployProcess(auth.token);
 
   if (typeof isDeploy !== 'object') {
-    const choice = await listInput({
-      message: 'You already have an application for this project?',
-      choices: [{
-        name: 'Create new application',
-        value: 'create',
-        short: 'Create'
-      },
-      {
-        name: 'Link to an existing application',
-        value: 'link',
-        short: 'Link'
-      }],
-      separator: false,
-      abort: 'end'
-    });
+    let choice;
+
+    const url = 'http://localhost:1332';
+    const res = await getApplicationsAction(url, auth.token);
+
+    if (haveDeployAccount && !_.isEmpty(res.applications)) {
+      choice = await listInput({
+        message: 'You already have an application for this project?',
+        choices: [{
+          name: 'Create new application',
+          value: 'create',
+          short: 'Create'
+        },
+        {
+          name: 'Link to an existing application',
+          value: 'link',
+          short: 'Link'
+        }],
+        separator: false,
+        abort: 'end'
+      });
+    } else {
+      choice = 'create';
+    }
 
     if (!choice) {
       process.exit(1);
