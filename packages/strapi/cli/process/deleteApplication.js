@@ -11,6 +11,9 @@ const _ = require('lodash');
 const getApplicationsAction = require('../actions/getApplications');
 const deleteApplicationAction = require('../actions/deleteApplication');
 
+// Validation form.
+const deleteForm = require('../forms/delete');
+
 // Utils.
 const listInput = require('../utils/input/list');
 
@@ -46,6 +49,8 @@ module.exports = async (token) => {
   if (!choice) {
     process.exit(1);
   }
+
+  await deleteForm(choice);
 
   res = await deleteApplicationAction(url, token, {
     name: choice
