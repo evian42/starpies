@@ -161,6 +161,12 @@ cmd.unknownOption = NOOP;
 cmd.description('list applications on Strapi Cloud');
 cmd.action(require('./strapi-application-list'));
 
+// `$ strapi application:delete`
+cmd = program.command('application:delete');
+cmd.unknownOption = NOOP;
+cmd.description('delete applications on Strapi Cloud');
+cmd.action(require('./strapi-application-delete'));
+
 /**
  * Normalize help argument
  */
