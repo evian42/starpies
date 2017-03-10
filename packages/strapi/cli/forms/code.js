@@ -20,11 +20,6 @@ module.exports = async () => {
     error: undefined,
     code: {
       label: rightPad('Code'),
-      mask: 'code',
-      placeholder: '######',
-      validateKeypress: (data, value) => (
-        /\d/.test(data) && value.length < 7
-      ),
       validateValue: data => data.trim().length === 6
     }
   };

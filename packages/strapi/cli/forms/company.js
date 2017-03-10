@@ -62,7 +62,17 @@ module.exports = async (country) => {
 
           piece.value = result;
 
-          process.stdout.write(`${chalk.cyan('✓')} ${piece.label}${result}\n`);
+          if (key === 'vat') {
+            result = _.filter(result, function(value) {
+              return (!isNaN(parseInt(value)));
+            });
+            result = result.join('');
+
+            piece.value = result;
+            process.stdout.write(`${chalk.cyan('✓')} ${piece.label}${result}\n`);
+          } else {
+            process.stdout.write(`${chalk.cyan('✓')} ${piece.label}${result}\n`);
+          }
         } catch (err) {
           if (err.message === 'USER_ABORT') {
             process.exit(1);

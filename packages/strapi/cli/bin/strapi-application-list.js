@@ -21,7 +21,7 @@ const getApplicationsAction = require('../actions/getApplications');
 const info = require('../utils/output/info');
 
 /**
- * `$ strapi application:list`
+ * `$ strapi app:list`
  *
  * List applications on Strapi Cloud
  */

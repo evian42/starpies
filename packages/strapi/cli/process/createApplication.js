@@ -14,20 +14,22 @@ const createApplicationAction = require('../actions/createApplication');
 // Logger.
 const success = require('../utils/output/success');
 const error = require('../utils/output/error');
-const wait = require('../utils/output/wait');
+const info = require('../utils/output/info');
+const progress = require('../utils/output/progress');
 
 module.exports = async (token, appName, plan) => {
   const url = 'http://localhost:1332';
 
   console.log(' ');
-  const spinner = wait(`Create ${appName} application...`);
+  info(`Create ${appName} application...`);
+  const progressBar = progress();
 
   const res = await createApplicationAction(url, token, {
     name: appName,
     plan: plan
   });
 
-  spinner();
+  await progressBar();
 
   if (res.error) {
     error(res.error);

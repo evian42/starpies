@@ -155,14 +155,14 @@ cmd.unknownOption = NOOP;
 cmd.description('deploy your application on Strapi Cloud');
 cmd.action(require('./strapi-deploy'));
 
-// `$ strapi application:list`
-cmd = program.command('application:list');
+// `$ strapi app:list`
+cmd = program.command('app:list');
 cmd.unknownOption = NOOP;
 cmd.description('list applications on Strapi Cloud');
 cmd.action(require('./strapi-application-list'));
 
-// `$ strapi application:delete`
-cmd = program.command('application:delete');
+// `$ strapi app:delete`
+cmd = program.command('app:delete');
 cmd.unknownOption = NOOP;
 cmd.description('delete applications on Strapi Cloud');
 cmd.action(require('./strapi-application-delete'));
