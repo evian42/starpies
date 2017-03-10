@@ -21,9 +21,14 @@ const listInput = require('../utils/input/list');
 const success = require('../utils/output/success');
 const info = require('../utils/output/info');
 const error = require('../utils/output/error');
+const wait = require('../utils/output/wait');
 
 module.exports = async (token) => {
+  let loader = wait('Load your applications...');
+
   let res = await getApplicationsAction(token);
+
+  loader();
 
   if (_.isEmpty(res.applications)) {
     info('You don\'t have application on Strapi Cloud');
@@ -50,9 +55,13 @@ module.exports = async (token) => {
 
   await deleteForm(choice);
 
+  loader = wait(`Delete ${choice} application...`);
+
   res = await deleteApplicationAction(token, {
     name: choice
   });
+
+  loader();
 
   if (res.error) {
     error(res.error);

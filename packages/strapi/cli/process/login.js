@@ -17,12 +17,17 @@ const signinAction = require('../actions/authSignin');
 // Logger.
 const error = require('../utils/output/error');
 const success = require('../utils/output/success');
+const wait = require('../utils/output/wait');
 
 module.exports = async () => {
   async function login(email) {
     const auth = await signinForm(email);
 
+    const loader = wait('Login ...');
+
     const res = await signinAction(auth);
+
+    loader();
 
     if (res.error === 'invalid_password') {
       error('Bad password');

@@ -14,11 +14,15 @@ const getApplicationsAction = require('../actions/getApplications');
 
 // Logger.
 const error = require('../utils/output/error');
+const wait = require('../utils/output/wait');
 
 module.exports = async (token) => {
+  const loader = wait('Check your free plan status...');
+
   let res = await getSubscriptionsAction(token);
 
   if (res.error) {
+    loader();
     error(res.error);
     process.exit(1);
   }
@@ -32,6 +36,8 @@ module.exports = async (token) => {
 
   if (freePlan) {
     let res = await getApplicationsAction(token);
+
+    loader();
 
     if (res.error) {
       error(res.error);
@@ -48,6 +54,8 @@ module.exports = async (token) => {
       return true;
     }
   }
+
+  loader();
 
   return false;
 };

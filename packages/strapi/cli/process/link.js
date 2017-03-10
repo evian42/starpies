@@ -17,8 +17,15 @@ const getApplicationsAction = require('../actions/getApplications');
 // Utils.
 const listInput = require('../utils/input/list');
 
+// Logger.
+const wait = require('../utils/output/wait');
+
 module.exports = async (token) => {
+  const loader = wait('Load you applications...');
+
   const res = await getApplicationsAction(token);
+
+  loader();
 
   const choices = _.map(res.applications, app => {
     return {

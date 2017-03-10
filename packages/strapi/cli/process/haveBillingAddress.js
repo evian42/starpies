@@ -9,9 +9,14 @@ const userInfosAction = require('../actions/userInfos');
 
 // Logger.
 const error = require('../utils/output/error');
+const wait = require('../utils/output/wait');
 
 module.exports = async (token) => {
+  const loader = wait('Check your billing adddress...');
+
   const res = await userInfosAction(token);
+
+  loader();
 
   if (res.error) {
     error(res.error);

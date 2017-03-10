@@ -19,9 +19,12 @@ const countries = require('../utils/billing/country-list');
 // Logger.
 const error = require('../utils/output/error');
 const success = require('../utils/output/success');
+const wait = require('../utils/output/wait');
 
 module.exports = async (token) => {
   const card = await ccForm();
+
+  const loader = wait('Link this credit card to your account...');
 
   const res = await updateAction(token, {
     number: card.cardNumber,
@@ -30,6 +33,8 @@ module.exports = async (token) => {
     cvv: card.ccv,
     country: countries[card.country]
   });
+
+  loader();
 
   if (res.error) {
     error(res.error);

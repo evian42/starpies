@@ -20,11 +20,17 @@ const updateAddressProcess = require('../process/updateAddress');
 // Utils.
 const listInput = require('../utils/input/list');
 
+// Logger.
+const wait = require('../utils/output/wait');
+
 module.exports = async (token) => {
+  let loader = wait('Load Strapi Cloud plans...');
+
   const res = await getPlansAction(token);
+
+  loader();
+
   const haveFreePlan = await haveFreePlanProcess(token);
-  const haveBillingAddress = await haveBillingAddressProcess(token);
-  const haveBillingCard = await haveBillingCardProcess(token);
 
   if (!haveFreePlan) {
     res.plan = _.drop(res.plan);
@@ -52,12 +58,16 @@ module.exports = async (token) => {
     plan: choice
   });
 
-  if (plan.price > 0 && (!haveBillingAddress || !haveBillingCard)) {
+  if (plan.price > 0) {
     let card = {};
+
+    const haveBillingCard = await haveBillingCardProcess(token);
 
     if (!haveBillingCard) {
       card = await updateCardProcess(token);
     }
+
+    const haveBillingAddress = await haveBillingAddressProcess(token);
 
     if (!haveBillingAddress) {
       await updateAddressProcess(token, card.country);

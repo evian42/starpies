@@ -18,6 +18,7 @@ const listInput = require('../utils/input/list');
 // Logger.
 const error = require('../utils/output/error');
 const success = require('../utils/output/success');
+const wait = require('../utils/output/wait');
 
 module.exports = async (token, country) => {
   const address = await addressForm(country);
@@ -49,6 +50,8 @@ module.exports = async (token, country) => {
     address.vat = company.vat;
   }
 
+  const loader = wait('Link this billing adddress to your account...');
+
   const res = await updateAction(token, {
     first_name: address.firstName,
     last_name: address.lastName,
@@ -59,6 +62,8 @@ module.exports = async (token, country) => {
     zip: address.zipCode,
     country: countries[address.country]
   });
+
+  loader();
 
   if (res.error) {
     error(res.error);
