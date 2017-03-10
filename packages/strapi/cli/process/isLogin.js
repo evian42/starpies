@@ -12,13 +12,11 @@ const path = require('path');
 const userInfosAction = require('../actions/userInfos');
 
 module.exports = async () => {
-  const url = 'http://localhost:1331';
-
   try {
     const HOME = process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME'];
     const strapirc = JSON.parse(fs.readFileSync(path.resolve(HOME, '.strapirc'), 'utf8'));
 
-    const res = await userInfosAction(url, strapirc.token);
+    const res = await userInfosAction(strapirc.token);
 
     return (!res.error) ? strapirc : 'expire';
   } catch(e) {

@@ -7,7 +7,9 @@
 // Public dependencies.
 const fetch = require('node-fetch');
 
-module.exports = async (url, token, data) => {
+module.exports = async (token, data) => {
+  const url = 'http://localhost:1331';
+
   data = JSON.stringify(data);
 
   const res = await fetch(`${url}/card`, {

@@ -27,8 +27,6 @@ const info = require('../utils/output/info');
  */
 
 module.exports = async () => {
-  const url = 'http://localhost:1332';
-
   const isLogin = await isLoginProcess();
   let auth;
 
@@ -40,7 +38,7 @@ module.exports = async () => {
     auth = await loginProcess();
   }
 
-  const res = await getApplicationsAction(url, auth.token);
+  const res = await getApplicationsAction(auth.token);
 
   if (_.isEmpty(res.applications)) {
     info('You don\'t have application on Strapi Cloud');

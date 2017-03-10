@@ -14,9 +14,7 @@ const getCardAction = require('../actions/getCard');
 const error = require('../utils/output/error');
 
 module.exports = async (token) => {
-  const url = 'http://localhost:1331';
-
-  const res = await getCardAction(url, token);
+  const res = await getCardAction(token);
 
   if (res.error) {
     error(res.error);

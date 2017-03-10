@@ -25,10 +25,9 @@ const info = require('../utils/output/info');
 
 module.exports = async () => {
   let auth;
-  var url = 'http://localhost:1331';
 
   async function signin() {
-    const res = await signinAction(url, auth);
+    const res = await signinAction(auth);
 
     if (res.error) {
       error('Incorrect credentials during signin');
@@ -56,7 +55,7 @@ module.exports = async () => {
 
     const code = await codeForm();
 
-    const res = await valideCodeAction(url, {
+    const res = await valideCodeAction({
       email: auth.email,
       code: code
     });
@@ -64,7 +63,7 @@ module.exports = async () => {
     if (res.error === 'invalid_code_timeout') {
       error('This code has expired, we send you a new code');
 
-      await sendCodeAction(url, {
+      await sendCodeAction({
         email: auth.email
       });
 
@@ -81,7 +80,7 @@ module.exports = async () => {
   async function singup(email) {
     auth = await signupForm(email);
 
-    const res = await signupAction(url, auth);
+    const res = await signupAction(auth);
 
     if (res.error === 'invalid_email_exist') {
       error('This email is already exist');
@@ -92,7 +91,7 @@ module.exports = async () => {
 
       return await singup();
     } else {
-      await sendCodeAction(url, {
+      await sendCodeAction({
         email: auth.email
       });
 

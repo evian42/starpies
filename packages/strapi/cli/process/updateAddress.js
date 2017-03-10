@@ -20,8 +20,6 @@ const error = require('../utils/output/error');
 const success = require('../utils/output/success');
 
 module.exports = async (token, country) => {
-  const url = 'http://localhost:1331';
-
   const address = await addressForm(country);
 
   const choice = await listInput({
@@ -51,7 +49,7 @@ module.exports = async (token, country) => {
     address.vat = company.vat;
   }
 
-  const res = await updateAction(url, token, {
+  const res = await updateAction(token, {
     first_name: address.firstName,
     last_name: address.lastName,
     company: address.company,

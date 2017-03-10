@@ -23,9 +23,7 @@ const info = require('../utils/output/info');
 const error = require('../utils/output/error');
 
 module.exports = async (token) => {
-  const url = 'http://localhost:1332';
-
-  let res = await getApplicationsAction(url, token);
+  let res = await getApplicationsAction(token);
 
   if (_.isEmpty(res.applications)) {
     info('You don\'t have application on Strapi Cloud');
@@ -52,7 +50,7 @@ module.exports = async (token) => {
 
   await deleteForm(choice);
 
-  res = await deleteApplicationAction(url, token, {
+  res = await deleteApplicationAction(token, {
     name: choice
   });
 

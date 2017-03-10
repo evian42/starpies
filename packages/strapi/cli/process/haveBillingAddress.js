@@ -11,9 +11,7 @@ const userInfosAction = require('../actions/userInfos');
 const error = require('../utils/output/error');
 
 module.exports = async (token) => {
-  const url = 'http://localhost:1331';
-
-  const res = await userInfosAction(url, token);
+  const res = await userInfosAction(token);
 
   if (res.error) {
     error(res.error);

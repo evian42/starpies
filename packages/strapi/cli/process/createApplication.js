@@ -18,13 +18,11 @@ const info = require('../utils/output/info');
 const progress = require('../utils/output/progress');
 
 module.exports = async (token, appName, plan) => {
-  const url = 'http://localhost:1332';
-
   console.log(' ');
   info(`Create ${appName} application...`);
   const progressBar = progress();
 
-  const res = await createApplicationAction(url, token, {
+  const res = await createApplicationAction(token, {
     name: appName,
     plan: plan
   });

@@ -15,12 +15,10 @@ const _ = require('lodash');
 const getApplicationsAction = require('../actions/getApplications');
 
 module.exports = async (token) => {
-  const url = 'http://localhost:1332';
-
   try {
     const strapirc = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), '.strapirc'), 'utf8'));
 
-    const res = await getApplicationsAction(url, token);
+    const res = await getApplicationsAction(token);
 
     if (res.error) {
       return res.error;

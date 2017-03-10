@@ -21,11 +21,9 @@ const error = require('../utils/output/error');
 const success = require('../utils/output/success');
 
 module.exports = async (token) => {
-  const url = 'http://localhost:1331';
-
   const card = await ccForm();
 
-  const res = await updateAction(url, token, {
+  const res = await updateAction(token, {
     number: card.cardNumber,
     month: _.trim(card.expDate.split('/')[0]),
     year:  _.trim(card.expDate.split('/')[1]),

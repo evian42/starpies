@@ -85,8 +85,7 @@ module.exports = async () => {
   if (typeof isDeploy !== 'object') {
     let choice;
 
-    const url = 'http://localhost:1332';
-    const res = await getApplicationsAction(url, auth.token);
+    const res = await getApplicationsAction(auth.token);
 
     if (haveDeployAccount && !_.isEmpty(res.applications)) {
       choice = await listInput({

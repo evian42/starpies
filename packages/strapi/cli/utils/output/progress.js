@@ -47,19 +47,13 @@ module.exports = () => {
   return () => {
     return new Promise(resolve => {
       const interval = setInterval(() => {
-        progress++;
+        bar.tick(1, {
+          title: '(Complete)'
+        });
 
-        if (progress >= 100) {
-          bar.tick(1, {
-            title: '(Complete)'
-          });
-
+        if (bar.complete) {
           clearInterval(interval);
           return resolve();
-        } else {
-          bar.tick(1, {
-            title: '(Setup server)'
-          });
         }
       }, 50);
     });

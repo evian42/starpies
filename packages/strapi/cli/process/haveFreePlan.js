@@ -16,10 +16,7 @@ const getApplicationsAction = require('../actions/getApplications');
 const error = require('../utils/output/error');
 
 module.exports = async (token) => {
-  const urlUser = 'http://localhost:1331';
-  const urlDeploy = 'http://localhost:1332';
-
-  let res = await getSubscriptionsAction(urlUser, token);
+  let res = await getSubscriptionsAction(token);
 
   if (res.error) {
     error(res.error);
@@ -34,7 +31,7 @@ module.exports = async (token) => {
   });
 
   if (freePlan) {
-    let res = await getApplicationsAction(urlDeploy, token);
+    let res = await getApplicationsAction(token);
 
     if (res.error) {
       error(res.error);

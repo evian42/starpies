@@ -18,9 +18,7 @@ const getApplicationsAction = require('../actions/getApplications');
 const listInput = require('../utils/input/list');
 
 module.exports = async (token) => {
-  const url = 'http://localhost:1332';
-
-  const res = await getApplicationsAction(url, token);
+  const res = await getApplicationsAction(token);
 
   const choices = _.map(res.applications, app => {
     return {

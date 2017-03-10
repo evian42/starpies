@@ -18,8 +18,6 @@ const cmd = require('../utils/cmd');
 const error = require('../utils/output/error');
 
 module.exports = async (token) => {
-  const url = 'http://localhost:1332';
-
   const HOME = process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME'];
   const resSshList = await cmd(`ls ${HOME}/.ssh`);
   const keys = _.filter(_.dropRight(resSshList.split('\n')), value => {
@@ -46,7 +44,7 @@ module.exports = async (token) => {
 
   const key = await cmd(`cat ${HOME}/.ssh/${choice}`);
 
-  const res = await deploySignupAction(url, token, {
+  const res = await deploySignupAction(token, {
     ssh: key
   });
 

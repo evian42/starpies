@@ -19,12 +19,10 @@ const error = require('../utils/output/error');
 const success = require('../utils/output/success');
 
 module.exports = async () => {
-  const url = 'http://localhost:1331';
-
   async function login(email) {
     const auth = await signinForm(email);
 
-    const res = await signinAction(url, auth);
+    const res = await signinAction(auth);
 
     if (res.error === 'invalid_password') {
       error('Bad password');

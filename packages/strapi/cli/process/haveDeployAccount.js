@@ -8,9 +8,7 @@
 const deploySigninAction = require('../actions/deploySignin');
 
 module.exports = async (token) => {
-  const url = 'http://localhost:1332';
-
-  const res = await deploySigninAction(url, token);
+  const res = await deploySigninAction(token);
 
   if (!res.error) {
     return true;

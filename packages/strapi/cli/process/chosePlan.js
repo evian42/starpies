@@ -21,9 +21,7 @@ const updateAddressProcess = require('../process/updateAddress');
 const listInput = require('../utils/input/list');
 
 module.exports = async (token) => {
-  const url = 'http://localhost:1332';
-
-  const res = await getPlansAction(url, token);
+  const res = await getPlansAction(token);
   const haveFreePlan = await haveFreePlanProcess(token);
   const haveBillingAddress = await haveBillingAddressProcess(token);
   const haveBillingCard = await haveBillingCardProcess(token);
