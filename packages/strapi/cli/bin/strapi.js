@@ -143,6 +143,12 @@ cmd.unknownOption = NOOP;
 cmd.description('update billing address');
 cmd.action(require('./strapi-update-address'));
 
+// `$ strapi update:card`
+cmd = program.command('update:card');
+cmd.unknownOption = NOOP;
+cmd.description('update credit card');
+cmd.action(require('./strapi-update-card'));
+
 // `$ strapi login`
 cmd = program.command('login');
 cmd.unknownOption = NOOP;
