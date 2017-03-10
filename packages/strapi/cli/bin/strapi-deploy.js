@@ -52,14 +52,13 @@ module.exports = async () => {
     const choice = await listInput({
       message: 'You have to be authenticated to deploy you application',
       choices: [{
-        name: 'I already have an account',
-        value: 'login',
-        short: 'Login'
-      },
-      {
         name: 'Create my account',
         value: 'register',
         short: 'Register'
+      }, {
+        name: 'I already have an account',
+        value: 'login',
+        short: 'Login'
       }],
       separator: false,
       abort: 'end'
@@ -77,7 +76,7 @@ module.exports = async () => {
   const haveDeployAccount = await haveDeployAccountProcess(auth.token);
 
   if (!haveDeployAccount) {
-    await createDeployAccountProcess(auth.token);
+    await createDeployAccountProcess(auth.token, auth.id);
   }
 
   const isDeploy = await isDeployProcess(auth.token);

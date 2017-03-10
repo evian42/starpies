@@ -71,7 +71,9 @@ module.exports = async (token) => {
 
     if (!haveBillingAddress) {
       await updateAddressProcess(token, {
-        country: card.country
+        address: {
+          country: card.country
+        }
       });
     }
   }

@@ -28,6 +28,8 @@ module.exports = async (token, data) => {
     };
   }
 
+  if (!data.company) data.company = {};
+
   const address = await addressForm(data.address);
 
   const choice = await listInput({

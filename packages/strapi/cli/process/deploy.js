@@ -20,6 +20,7 @@ const wait = require('../utils/output/wait');
 
 module.exports = async () => {
   return new Promise(async (resolve) => {
+    const HOME = process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME'];
     let strapirc;
 
     try {
@@ -34,7 +35,9 @@ module.exports = async () => {
     const spinner = wait(`Deploy ${strapirc.name} application...`);
 
     await cmd(`ssh-keygen -R ${strapirc.name}.strapiapp.com `);
-    await cmd(`ssh-keyscan ${strapirc.name}.strapiapp.com >> ~/.ssh/known_hosts`);
+    await cmd(`ssh-keyscan ${strapirc.name}.strapiapp.com >> ${HOME}/.ssh/known_hosts`);
+    await cmd(`ssh-keyscan ${strapirc.name}.strapiapp.com >> ${HOME}/.ssh/known_hosts`);
+    await cmd(`ssh-add -K ${HOME}/.ssh/strapi_cloud`);
 
     git.init()
     .then(() => {
