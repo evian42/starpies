@@ -70,7 +70,9 @@ module.exports = async (token) => {
     const haveBillingAddress = await haveBillingAddressProcess(token);
 
     if (!haveBillingAddress) {
-      await updateAddressProcess(token, card.country);
+      await updateAddressProcess(token, {
+        country: card.country
+      });
     }
   }
 

@@ -6,6 +6,7 @@
 
 // Public dependencies.
 const chalk = require('chalk');
+const _ = require('lodash');
 
 // Utils.
 const textInput = require('../utils/input/text');
@@ -18,7 +19,7 @@ function rightPad(string, n = 12) {
   return string + ' '.repeat(n > -1 ? n : 0);
 }
 
-module.exports = async (country) => {
+module.exports = async (data) => {
   const state = {
     error: undefined,
     addressGroupLabel: `\n> ${chalk.bold('Enter your billing address')}`,
@@ -59,11 +60,6 @@ module.exports = async (country) => {
       validateValue: data => data.trim().length > 0
     },
 
-    state: {
-      label: rightPad('State'),
-      validateValue: data => data.trim().length > 0
-    },
-
     city: {
       label: rightPad('City'),
       validateValue: data => data.trim().length > 0
@@ -75,9 +71,9 @@ module.exports = async (country) => {
     }
   };
 
-  if (country) {
-    state.country.initialValue = country;
-  }
+  _.forEach(data, function(value, key) {
+    state[key].initialValue = value;
+  });
 
   async function render() {
     for (const key in state) {
@@ -112,10 +108,6 @@ module.exports = async (country) => {
               zipCode: result
             });
 
-            if (addressInfo.state) {
-              state.state.initialValue = addressInfo.state;
-            }
-
             if (addressInfo.city) {
               state.city.initialValue = addressInfo.city;
             }
@@ -141,7 +133,6 @@ module.exports = async (country) => {
       lastName: state.lastName.value,
       country: state.country.value,
       zipCode: state.zipCode.value,
-      state: state.state.value,
       city: state.city.value,
       address1: state.address1.value
     };

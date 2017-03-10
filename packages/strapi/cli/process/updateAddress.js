@@ -20,8 +20,15 @@ const error = require('../utils/output/error');
 const success = require('../utils/output/success');
 const wait = require('../utils/output/wait');
 
-module.exports = async (token, country) => {
-  const address = await addressForm(country);
+module.exports = async (token, data) => {
+  if (!data) {
+    data = {
+      address: {},
+      company: {}
+    };
+  }
+
+  const address = await addressForm(data.address);
 
   const choice = await listInput({
     message: 'Are you a company?',
@@ -44,7 +51,10 @@ module.exports = async (token, country) => {
   }
 
   if (choice === 'company') {
-    const company = await companyForm(countries[address.country]);
+    if (!data.company.country) data.company.country = address.country;
+    data.company.country = countries[data.company.country];
+
+    const company = await companyForm(data.company);
 
     address.company = company.name;
     address.vat = company.vat;

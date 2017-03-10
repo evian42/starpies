@@ -16,7 +16,7 @@ function rightPad(string, n = 12) {
   return string + ' '.repeat(n > -1 ? n : 0);
 }
 
-module.exports = async (country) => {
+module.exports = async (data) => {
   const state = {
     error: undefined,
     name: {
@@ -33,9 +33,16 @@ module.exports = async (country) => {
 
   if (_.indexOf(['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
     'DE', 'GB', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL',
-    'PT', 'RO', 'SK', 'SI', 'ES', 'SE'], country) === -1) {
+    'PT', 'RO', 'SK', 'SI', 'ES', 'SE'], data.country) === -1) {
     delete state.vat;
+    delete data.vat;
   }
+
+  delete data.country;
+
+  _.forEach(data, function(value, key) {
+    state[key].initialValue = value;
+  });
 
   async function render() {
     for (const key in state) {

@@ -137,6 +137,12 @@ cmd.unknownOption = NOOP;
 cmd.description('pull the latest updates of your custom generators');
 cmd.action(require('./strapi-update'));
 
+// `$ strapi update:address`
+cmd = program.command('update:address');
+cmd.unknownOption = NOOP;
+cmd.description('update billing address');
+cmd.action(require('./strapi-update-address'));
+
 // `$ strapi login`
 cmd = program.command('login');
 cmd.unknownOption = NOOP;
