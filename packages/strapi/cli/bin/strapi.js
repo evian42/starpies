@@ -155,6 +155,12 @@ cmd.unknownOption = NOOP;
 cmd.description('deploy your application on Strapi Cloud');
 cmd.action(require('./strapi-deploy'));
 
+// `$ strapi open`
+cmd = program.command('open');
+cmd.unknownOption = NOOP;
+cmd.description('open your application in a browser');
+cmd.action(require('./strapi-open'));
+
 // `$ strapi app:list`
 cmd = program.command('app:list');
 cmd.unknownOption = NOOP;
