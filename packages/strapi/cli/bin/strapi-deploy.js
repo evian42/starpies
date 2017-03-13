@@ -127,7 +127,7 @@ module.exports = async () => {
     }
   }
 
-  await deployProcess();
+  await deployProcess(auth.token, auth.id);
 
   process.exit(1);
 };
