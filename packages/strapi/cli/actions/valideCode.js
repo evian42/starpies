@@ -7,6 +7,7 @@
 // Public dependencies.
 const fetch = require('node-fetch');
 
+// Valide validation code
 module.exports = async (data) => {
   const url = 'http://localhost:1331';
 

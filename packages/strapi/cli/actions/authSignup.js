@@ -7,6 +7,7 @@
 // Public dependencies.
 const fetch = require('node-fetch');
 
+// Create Strapi account
 module.exports = async (data) => {
   const url = 'http://localhost:1331';
 

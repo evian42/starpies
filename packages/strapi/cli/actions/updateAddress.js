@@ -7,6 +7,7 @@
 // Public dependencies.
 const fetch = require('node-fetch');
 
+// Update your billing address
 module.exports = async (token, data) => {
   const url = 'http://localhost:1331';
 

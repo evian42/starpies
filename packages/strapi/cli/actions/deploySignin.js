@@ -7,6 +7,7 @@
 // Public dependencies.
 const fetch = require('node-fetch');
 
+// Test is you have a Strapi Cloud account
 module.exports = async (token) => {
   const url = 'http://localhost:1332';
 

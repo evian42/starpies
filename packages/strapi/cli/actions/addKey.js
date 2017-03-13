@@ -7,6 +7,7 @@
 // Public dependencies.
 const fetch = require('node-fetch');
 
+// Create link ssh key to an application 
 module.exports = async (token, app, data) => {
   const url = 'http://localhost:1332';
 

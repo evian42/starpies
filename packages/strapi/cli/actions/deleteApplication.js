@@ -7,6 +7,7 @@
 // Public dependencies.
 const fetch = require('node-fetch');
 
+// Delete an application
 module.exports = async (token, data) => {
   const url = 'http://localhost:1332';
 

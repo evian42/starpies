@@ -7,6 +7,7 @@
 // Public dependencies.
 const fetch = require('node-fetch');
 
+// Get list of your applications
 module.exports = async (token) => {
   const url = 'http://localhost:1332';
 
