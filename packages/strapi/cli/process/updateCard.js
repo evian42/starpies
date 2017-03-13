@@ -7,11 +7,11 @@
 // Public dependencies.
 const _ = require('lodash');
 
-// Credit card form.
-const ccForm = require('../forms/cc');
-
 // Strapi services actions.
 const updateAction = require('../actions/updateCard');
+
+// Forms.
+const ccForm = require('../forms/cc');
 
 // Utils.
 const countries = require('../utils/billing/country-list');
@@ -23,6 +23,8 @@ const wait = require('../utils/output/wait');
 
 module.exports = async (token) => {
   const card = await ccForm();
+
+  console.log('');
 
   const loader = wait('Link this credit card to your account...');
 

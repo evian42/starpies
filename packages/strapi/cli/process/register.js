@@ -8,17 +8,17 @@
 const fs = require('fs');
 const path = require('path');
 
-// Signup form.
-const signupForm = require('../forms/auth');
-const codeForm = require('../forms/code');
-
 // Strapi services actions.
 const signupAction = require('../actions/authSignup');
 const signinAction = require('../actions/authSignin');
 const sendCodeAction = require('../actions/sendCode');
 const valideCodeAction = require('../actions/valideCode');
 
-// Logger.
+// Forms.
+const signupForm = require('../forms/auth');
+const codeForm = require('../forms/code');
+
+// Loggers.
 const error = require('../utils/output/error');
 const success = require('../utils/output/success');
 const info = require('../utils/output/info');

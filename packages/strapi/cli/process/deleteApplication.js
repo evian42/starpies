@@ -11,13 +11,13 @@ const _ = require('lodash');
 const getApplicationsAction = require('../actions/getApplications');
 const deleteApplicationAction = require('../actions/deleteApplication');
 
-// Validation form.
+// Forms.
 const deleteForm = require('../forms/delete');
 
 // Utils.
 const listInput = require('../utils/input/list');
 
-// Logger.
+// Loggers.
 const success = require('../utils/output/success');
 const info = require('../utils/output/info');
 const error = require('../utils/output/error');
@@ -54,6 +54,8 @@ module.exports = async (token) => {
   }
 
   await deleteForm(choice);
+
+  console.log('');
 
   loader = wait(`Delete ${choice} application...`);
 

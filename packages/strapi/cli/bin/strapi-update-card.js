@@ -11,7 +11,7 @@ const isLoginProcess = require('../process/isLogin');
 const loginProcess = require('../process/login');
 const updateCardProcess = require('../process/updateCard');
 
-// Logger.
+// Loggers.
 const info = require('../utils/output/info');
 
 /**
@@ -33,6 +33,8 @@ module.exports = async () => {
   }
 
   await updateCardProcess(auth.token);
+
+  console.log('');
 
   process.exit(1);
 };

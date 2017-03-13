@@ -10,14 +10,14 @@
 const chalk = require('chalk');
 const _ = require('lodash');
 
+// Strapi services actions.
+const getApplicationsAction = require('../actions/getApplications');
+
 // Processes.
 const isLoginProcess = require('../process/isLogin');
 const loginProcess = require('../process/login');
 
-// Strapi services actions.
-const getApplicationsAction = require('../actions/getApplications');
-
-// Logger.
+// Loggers.
 const info = require('../utils/output/info');
 
 /**
@@ -51,7 +51,7 @@ module.exports = async () => {
     console.log(`> ${application.name}`);
   });
 
-  console.log(' ');
+  console.log('');
 
   process.exit(1);
 };

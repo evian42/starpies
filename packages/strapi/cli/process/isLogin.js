@@ -11,7 +11,7 @@ const path = require('path');
 // Strapi services actions.
 const userInfosAction = require('../actions/userInfos');
 
-// Logger.
+// Loggers.
 const wait = require('../utils/output/wait');
 
 module.exports = async () => {

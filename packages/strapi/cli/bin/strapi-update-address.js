@@ -20,7 +20,7 @@ const updateAddressProcess = require('../process/updateAddress');
 // Utils.
 const countries = require('../utils/billing/country-list');
 
-// Logger.
+// Loggers.
 const info = require('../utils/output/info');
 const wait = require('../utils/output/wait');
 
@@ -66,6 +66,8 @@ module.exports = async () => {
       vat: res.customer.vat_number
     }
   });
+
+  console.log('');
 
   process.exit(1);
 };

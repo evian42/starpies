@@ -7,7 +7,7 @@
 // Strapi services actions.
 const userInfosAction = require('../actions/userInfos');
 
-// Logger.
+// Loggers.
 const error = require('../utils/output/error');
 const wait = require('../utils/output/wait');
 

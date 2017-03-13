@@ -69,6 +69,5 @@ module.exports = async () => {
     return state.name.value;
   }
 
-
   return render().catch(console.error);
 };

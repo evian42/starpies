@@ -9,7 +9,6 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 const stripAnsi = require('strip-ansi');
 
-/* eslint-disable no-multiple-empty-lines, no-var, no-undef, no-eq-null, eqeqeq, semi */
 inquirer.prompt.prompts.list.prototype.getQuestion = function () {
   var message = chalk.bold('> ' + this.opt.message) + ' ';
 
@@ -20,7 +19,6 @@ inquirer.prompt.prompts.list.prototype.getQuestion = function () {
 
   return message;
 };
-/* eslint-enable */
 
 function getLength(string) {
   let biggestLength = 0;
@@ -39,7 +37,7 @@ function getLength(string) {
 
 module.exports = async function ({
   message = 'the question',
-  choices = [{ // eslint-disable-line no-unused-vars
+  choices = [{
     name: 'something\ndescription\ndetails\netc',
     value: 'something unique',
     short: 'generally the first line of `name`'
@@ -88,7 +86,7 @@ module.exports = async function ({
 
   const nonce = Date.now();
 
-  console.log(' ');
+  console.log('');
 
   const answer = await inquirer.prompt({
     name: nonce,

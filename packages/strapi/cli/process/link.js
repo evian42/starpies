@@ -17,7 +17,7 @@ const getApplicationsAction = require('../actions/getApplications');
 // Utils.
 const listInput = require('../utils/input/list');
 
-// Logger.
+// Loggers.
 const wait = require('../utils/output/wait');
 
 module.exports = async (token) => {

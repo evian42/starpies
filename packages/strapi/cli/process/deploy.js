@@ -18,8 +18,9 @@ const addKeyAction = require('../actions/addKey');
 // Utils.
 const cmd = require('../utils/cmd');
 
-// Logger.
+// Loggers.
 const error = require('../utils/output/error');
+const success = require('../utils/output/success');
 const wait = require('../utils/output/wait');
 
 module.exports = async (token, id) => {
@@ -99,6 +100,10 @@ module.exports = async (token, id) => {
           })
           .push(remoteName, 'master', () => {
             spinner();
+
+            console.log('');
+            success(`Application ${strapirc.name} have been deployed -> ${strapirc.url}`);
+
             resolve();
           });
         }

@@ -13,7 +13,7 @@ const deploySignupAction = require('../actions/deploySignup');
 // Utils.
 const cmd = require('../utils/cmd');
 
-// Logger.
+// Loggers.
 const error = require('../utils/output/error');
 const wait = require('../utils/output/wait');
 

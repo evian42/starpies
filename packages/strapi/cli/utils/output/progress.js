@@ -7,7 +7,6 @@
 // Public dependencies
 const ProgressBar = require('progress');
 
-// prints a progress bar
 module.exports = () => {
   const bar = new ProgressBar('[:bar] :percent - :title', {
     complete: '=',
@@ -19,7 +18,6 @@ module.exports = () => {
   let progress = 0;
 
   function startDownload() {
-    progress = 0;
     const interval = setInterval(() => {
       progress++;
       let message = '(Setup server)';
@@ -32,13 +30,13 @@ module.exports = () => {
         message = '(Create server)';
       }
 
+      if (progress >= 98 || bar.complete) {
+        return clearInterval(interval);
+      }
+
       bar.tick(1, {
         title: message
       });
-
-      if (progress >= 98) {
-        clearInterval(interval);
-      }
     }, 700);
   }
 

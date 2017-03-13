@@ -9,13 +9,12 @@ const gMaps = require('@google/maps');
 
 const MAPS_API_KEY = 'AIzaSyALfKTQ6AiIoJ8WGDXR3E7IBOwlHoTPfYY';
 
-// eslint-disable-next-line camelcase
 module.exports = ({country, zipCode: postal_code}) => {
   return new Promise(resolve => {
     const maps = gMaps.createClient({key: MAPS_API_KEY});
 
     maps.geocode({
-      address: `${postal_code} ${country}` // eslint-disable-line camelcase
+      address: `${postal_code} ${country}`
     }, (err, res) => {
       if (err || res.json.results.length === 0) {
         resolve();

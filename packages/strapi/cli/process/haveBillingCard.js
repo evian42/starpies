@@ -10,7 +10,7 @@ const _ = require('lodash');
 // Strapi services actions.
 const getCardAction = require('../actions/getCard');
 
-// Logger.
+// Loggers.
 const error = require('../utils/output/error');
 const wait = require('../utils/output/wait');
 

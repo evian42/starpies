@@ -12,7 +12,7 @@ const _ = require('lodash');
 const getSubscriptionsAction = require('../actions/getSubscriptions');
 const getApplicationsAction = require('../actions/getApplications');
 
-// Logger.
+// Loggers.
 const error = require('../utils/output/error');
 const wait = require('../utils/output/wait');
 

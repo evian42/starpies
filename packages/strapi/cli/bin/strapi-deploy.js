@@ -6,32 +6,34 @@
  * Module dependencies
  */
 
-
 // Public dependencies.
 const _ = require('lodash');
 
 // Strapi services actions.
 const getApplicationsAction = require('../actions/getApplications');
 
+// Forms.
+const appNameForm = require('../forms/appName');
+
 // Processes.
 const loginProcess = require('../process/login');
 const registerProcess = require('../process/register');
+
 const isLoginProcess = require('../process/isLogin');
 const isDeployProcess = require('../process/isDeploy');
+
 const haveDeployAccountProcess = require('../process/haveDeployAccount');
+
 const createDeployAccountProcess = require('../process/createDeployAccount');
 const chosePlanProcess = require('../process/chosePlan');
 const linkProcess = require('../process/link');
 const createApplicationProcess = require('../process/createApplication');
 const deployProcess = require('../process/deploy');
 
-// App name form.
-const appNameForm = require('../forms/appName');
-
 // Utils.
 const listInput = require('../utils/input/list');
 
-// Logger.
+// Loggers.
 const info = require('../utils/output/info');
 
 /**
@@ -128,6 +130,8 @@ module.exports = async () => {
   }
 
   await deployProcess(auth.token, auth.id);
+
+  console.log('');
 
   process.exit(1);
 };

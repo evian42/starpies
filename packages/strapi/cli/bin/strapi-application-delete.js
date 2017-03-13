@@ -11,17 +11,16 @@ const isLoginProcess = require('../process/isLogin');
 const loginProcess = require('../process/login');
 const deleteApplicationProcess = require('../process/deleteApplication');
 
-// Logger.
+// Loggers.
 const info = require('../utils/output/info');
 
 /**
  * `$ strapi app:list`
  *
- * List applications on Strapi Cloud
+ * Delete application on Strapi Cloud
  */
 
 module.exports = async () => {
-
   const isLogin = await isLoginProcess();
   let auth;
 
@@ -34,6 +33,8 @@ module.exports = async () => {
   }
 
   await deleteApplicationProcess(auth.token);
+
+  console.log('');
 
   process.exit(1);
 };

@@ -96,6 +96,5 @@ module.exports = async (data) => {
     };
   }
 
-
   return render().catch(console.error);
 };

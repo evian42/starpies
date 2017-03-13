@@ -7,7 +7,7 @@
 // Strapi services actions.
 const deploySigninAction = require('../actions/deploySignin');
 
-// Logger.
+// Loggers.
 const wait = require('../utils/output/wait');
 
 module.exports = async (token) => {

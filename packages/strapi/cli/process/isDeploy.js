@@ -14,7 +14,7 @@ const _ = require('lodash');
 // Strapi services actions.
 const getApplicationsAction = require('../actions/getApplications');
 
-// Logger.
+// Loggers.
 const wait = require('../utils/output/wait');
 
 module.exports = async (token) => {

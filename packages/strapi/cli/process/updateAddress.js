@@ -4,18 +4,18 @@
  * Module dependencies
  */
 
+// Strapi services actions.
+const updateAction = require('../actions/updateAddress');
+
 // Forms.
 const addressForm = require('../forms/address');
 const companyForm = require('../forms/company');
-
-// Strapi services actions.
-const updateAction = require('../actions/updateAddress');
 
 // Utils.
 const countries = require('../utils/billing/country-list');
 const listInput = require('../utils/input/list');
 
-// Logger.
+// Loggers.
 const error = require('../utils/output/error');
 const success = require('../utils/output/success');
 const wait = require('../utils/output/wait');
@@ -61,6 +61,8 @@ module.exports = async (token, data) => {
     address.company = company.name;
     address.vat = company.vat;
   }
+
+  console.log('');
 
   const loader = wait('Link this billing adddress to your account...');
 

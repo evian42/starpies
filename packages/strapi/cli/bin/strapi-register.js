@@ -18,5 +18,7 @@ const registerProcess = require('../process/register');
 module.exports = async () => {
   await registerProcess();
 
+  console.log('');
+
   process.exit(1);
 };

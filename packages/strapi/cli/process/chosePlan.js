@@ -20,7 +20,7 @@ const updateAddressProcess = require('../process/updateAddress');
 // Utils.
 const listInput = require('../utils/input/list');
 
-// Logger.
+// Loggers.
 const wait = require('../utils/output/wait');
 
 module.exports = async (token) => {
@@ -77,7 +77,6 @@ module.exports = async (token) => {
       });
     }
   }
-
 
   return choice;
 };

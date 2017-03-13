@@ -18,5 +18,7 @@ const loginProcess = require('../process/login');
 module.exports = async () => {
   await loginProcess();
 
+  console.log('');
+
   process.exit(1);
 };

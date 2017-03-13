@@ -8,13 +8,13 @@
 const fs = require('fs');
 const path = require('path');
 
-// Signin form.
-const signinForm = require('../forms/auth');
-
 // Strapi services actions.
 const signinAction = require('../actions/authSignin');
 
-// Logger.
+// Forms.
+const signinForm = require('../forms/auth');
+
+// Loggers.
 const error = require('../utils/output/error');
 const success = require('../utils/output/success');
 const wait = require('../utils/output/wait');
