@@ -12,6 +12,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.8.0",
     "eslint-plugin-redux-saga": "^0.3.0",
+    "gitbook-cli": "^2.3.2",
     "istanbul": "~0.4.2",
     "lerna": "^2.0.0",
     "mocha": "~2.4.5",
@@ -27,7 +28,9 @@
     "createsymlinkdependencies": "node ./scripts/createSymlinkDependencies.js",
     "removesymlinkdependencies": "node ./scripts/removeSymlinkDependencies.js",
     "setup": "npm run clean:all && npm install && node ./scripts/setup.js",
-    "test": "make test"
+    "test": "make test",
+    "docs:v1": "cd docs/1.x.x && gitbook install && gitbook serve",
+    "docs:v3": "cd docs/3.x.x && gitbook install && gitbook serve"
   },
   "author": {
     "email": "hi@strapi.io",

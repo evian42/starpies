@@ -1,0 +1,12 @@
+{
+  "gitbook": "3.2.2",
+  "plugins": ["edit-link"],
+  "pluginsConfig": {
+    "edit-link": {
+        "base": "https://github.com/strapi/strapi/edit/master/docs",
+        "label": {
+          "en": "Edit This Page"
+        }
+    }
+  }
+}
