@@ -1,12 +1,30 @@
 {
+  "title": "Strapi docs",
+  "author": "Strapi",
   "gitbook": "3.2.2",
-  "plugins": ["edit-link"],
+  "plugins": ["edit-link", "anchorjs", "-fontsettings", "-sharing", "versions", "ga", "github"],
   "pluginsConfig": {
     "edit-link": {
-        "base": "https://github.com/strapi/strapi/edit/master/docs",
-        "label": {
-          "en": "Edit This Page"
-        }
-    }
+      "base": "https://github.com/strapi/strapi/edit/master/docs",
+      "label": {
+        "en": "Edit This Page"
+      }
+    },
+    "ga": {
+      "token": "UA-XXXX-Y"
+    },
+    "github": {
+      "url": "https://github.com/strapi/strapi"
+    },
+    "versions": {
+      "options": [{
+         "value": "https://strapi.io/docs/1.x.x",
+         "text": "Version 1.x.x"
+       },
+       {
+         "value": "https://strapi.io/docs/3.x.x",
+         "text": "Version 3.x.x"
+       }]
+     }
   }
 }
